@@ -3,7 +3,7 @@ import requests
 api_key = morpheus['morpheus']['apiAccessToken']
 url = 'https://cloudkey.corp.gipnetworks.com/api/accounts'
 
-subten_name = morpheus['customOptions']['subTenName']
+subten_name = morpheus['customOptions']['subtenName']
 
 headers = {
     "accept": "application/json",
