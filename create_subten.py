@@ -1,8 +1,11 @@
 import requests
 from morpheuscypher import Cypher
 
-api_key = Cypher(morpheus=morpheus, ssl_verify=False).get('secret/pw_api_key:api_key')
+api_key = morpheus['morpheus']['apiAccessToken']
 url = 'https://cloudkey.corp.gipnetworks.com/api/accounts'
+
+subten_name = morpheus['customOptions']['subTenName']
+
 
 headers = {
     "accept": "application/json",
@@ -10,7 +13,14 @@ headers = {
     "authorization": f"Bearer {api_key}"
 }
 
-response = requests.post(url, headers=headers)
+payload = {
+    "account": {
+        "currency": "USD",
+        "name": subten_name
+    }
+}
+
+response = requests.post(url, headers=headers, verify=False)
 
 print(response.text)
 
